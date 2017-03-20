@@ -10,9 +10,12 @@ var client = new Client({
 });
 
 app.get('/', function (req, res) {
-  client.renderComponent('client-side-render-with-external-deps', {}, function (err, html) {
-    console.log(html);
-    res.send(html);
+  client.renderComponents([
+  	{ name: 'client-side-render-with-external-deps' }, 
+  	{ name: 'oc-client' }
+  ], {}, function (err, htmls) {
+    console.log(htmls.join(''));
+    res.send(htmls.join(''));
   });
 });
 
